@@ -1,0 +1,24 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "TP de mise en place de l'application pour demander leur avis aux utilisateurs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mern-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CasoratiWeierstrass/mern.git"
+  },
+  "keywords": [
+    "mern",
+    "tp",
+    "achille"
+  ],
+  "author": "Louis Lhermitte Vincent Reol Lea Nlemba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CasoratiWeierstrass/mern/issues"
+  },
+  "homepage": "https://github.com/CasoratiWeierstrass/mern#readme"
+}
