@@ -11,7 +11,9 @@ services:
     - "27017:27017"
 
   backend:
-    build: sources\ms-avis\Dockerfile
+    build:
+      context: sources\ms-avis
+      dockerfile: Dockerfile
     container_name: backend_container
     ports:
       - "3000:3000"
@@ -19,10 +21,12 @@ services:
       - mongodb
 
   frontend:
-    build: sources\front-avis\Dockerfile
+    build:
+      context: sources\front-avis
+      dockerfile: Dockerfile
     container_name: frontend_container
     ports:
-      - "80:80"
+      - "8000:8000"
     depends_on:
       - backend
 
