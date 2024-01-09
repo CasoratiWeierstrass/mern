@@ -1,0 +1,39 @@
+version: '3.1'
+services:
+  mongodb:
+    image: mongo:4-focal
+    container_name: mongodb_container
+    restart: always
+    #environment:
+      #MONGO_INITDB_ROOT_USERNAME: root
+      #MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+    - "27017:27017"
+
+  backend:
+    build: sources\ms-avis\Dockerfile
+    container_name: backend_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: sources\front-avis\Dockerfile
+    container_name: frontend_container
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express_container
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+    depends_on:
+     - mongodb
