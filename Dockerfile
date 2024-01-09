@@ -62,9 +62,11 @@ COPY package.json .
 FROM nginx
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+COPY ./reverse.conf /etc/nginx/conf.d/default.conf
 
 # Expose the port that the application listens on.
-EXPOSE 3000
+
+#EXPOSE 80
 
 # Run the application.
-CMD npm start
+#CMD npm start
