@@ -2,37 +2,19 @@ version: '3.1'
 services:
   mongodb:
     image: mongo:4-focal
-    container_name: mongodb_container
+    container_name: mongodb
     restart: always
     #environment:
       #MONGO_INITDB_ROOT_USERNAME: root
       #MONGO_INITDB_ROOT_PASSWORD: example
     ports:
     - "27017:27017"
-
-  backend:
-    build:
-      context: sources\ms-avis
-      dockerfile: Dockerfile
-    container_name: backend_container
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongodb
-
-  frontend:
-    build:
-      context: sources\front-avis
-      dockerfile: Dockerfile
-    container_name: frontend_container
-    ports:
-      - "8000:8000"
-    depends_on:
-      - backend
+    networks:
+      - mern-network
 
   mongo-express:
     image: mongo-express
-    container_name: mongo_express_container
+    container_name: mongo-express
     restart: always
     ports:
       - "8081:8081"
@@ -41,3 +23,10 @@ services:
       - ME_CONFIG_MONGODB_PORT=27017
     depends_on:
      - mongodb
+    networks:
+      - mern-network
+
+networks:
+  mern-network:
+    external: true
+    name: mern-network
