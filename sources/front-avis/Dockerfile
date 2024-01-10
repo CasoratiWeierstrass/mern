@@ -62,6 +62,7 @@ COPY package.json .
 FROM nginx
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+COPY reverse.conf /etc/nginx/conf.d/default.conf
 
 
 # Expose the port that the application listens on.
